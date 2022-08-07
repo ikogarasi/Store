@@ -1,12 +1,10 @@
 ﻿@model CategoryModel
-@{
-    ViewData["Title"] = "Create";
-}
 
 <form method="post">
+    <input asp-for="Id" hidden/>
     <div class="border p-3 mt-4">
         <div class="row pb-2">
-            <h2 class="text-primary">Edit category</h2>
+            <h2 class="text-primary">@(Model.Id == 0 ? "Create" : "Update") category</h2>
             <hr />
         </div>
         <div class="mb-3">
@@ -18,10 +16,17 @@
             <input asp-for="DisplayOrder" placeholder="Order" class="form-control"/>
         </div>
         <button type="submit" class="btn btn-primary" style="width:150px">
-            Update
+            @(Model.Id == 0 ? "Create" : "Update")
         </button>
         <a asp-controller="Category" asp-action="Index" class="btn btn-secondary" style="width:150px">
             Back to list
         </a>
     </div>
 </form>
+
+@section Scripts
+{
+    @{
+        <partial name="_ValidationScriptsPartial"/>
+    }
+}

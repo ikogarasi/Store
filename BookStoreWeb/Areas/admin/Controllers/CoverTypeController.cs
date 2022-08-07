@@ -16,8 +16,7 @@ namespace BookStoreWeb.Areas.admin.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<CoverTypeModel> listOfObject = _unitOfWork.CoverTypes.GetAll();
-            return View(listOfObject);
+            return View();
         }
 
         [HttpGet]
@@ -43,34 +42,27 @@ namespace BookStoreWeb.Areas.admin.Controllers
             return View(obj);
         }
 
+        #region API CALLS
         [HttpGet]
-        public IActionResult Delete(int? id)
+        public IActionResult GetAll()
         {
-            if (id == null || id == 0)
-                return NotFound();
-
-            var coverTypeFromDb = _unitOfWork.CoverTypes.GetFirstOrDefault(i => i.Id == id);
-
-            if (coverTypeFromDb == null)
-                return NotFound();
-
-            return View(coverTypeFromDb);
+            var listOfObject = _unitOfWork.CoverTypes.GetAll();
+            return Json(new { data = listOfObject });
         }
 
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public IActionResult DeletePost(int? id)
+        [HttpDelete]
+        public IActionResult Delete(int id)
         {
             var obj = _unitOfWork.CoverTypes.GetFirstOrDefault(i => i.Id == id);
             if (obj == null)
             {
-                return NotFound();
+                return Json(new { success = false, message = "Error while deleting" });
             }
 
             _unitOfWork.CoverTypes.Remove(obj);
             _unitOfWork.Save();
-            TempData["success"] = "Type successfully removed";
-            return RedirectToAction("Index");
+            return Json(new {success = true, message = "Cover type successfully deleted"});
         }
+        #endregion
     }
 }

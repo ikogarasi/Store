@@ -15,28 +15,16 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\vital\source\repos\BookStore\BookStoreWeb
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/vital/source/repos/BookStore/BookStoreWeb/Areas/admin/Views/Category/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcYWRtaW5cVmlld3NcQ2F0ZWdvcnlcQ3JlYXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/vital/source/repos/BookStore/BookStoreWeb/Areas/admin/Views/Category/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcYWRtaW5cVmlld3NcQ2F0ZWdvcnlcRGVsZXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/vital/source/repos/BookStore/BookStoreWeb/Areas/admin/Views/Category/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcYWRtaW5cVmlld3NcQ2F0ZWdvcnlcRWRpdC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/vital/source/repos/BookStore/BookStoreWeb/Areas/admin/Views/Category/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcYWRtaW5cVmlld3NcQ2F0ZWdvcnlcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/vital/source/repos/BookStore/BookStoreWeb/Areas/admin/Views/CoverType/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcYWRtaW5cVmlld3NcQ292ZXJUeXBlXENyZWF0ZS5jc2h0bWw=
+[C:/Users/vital/source/repos/BookStore/BookStoreWeb/Areas/admin/Views/Category/Upsert.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcYWRtaW5cVmlld3NcQ2F0ZWdvcnlcVXBzZXJ0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/vital/source/repos/BookStore/BookStoreWeb/Areas/admin/Views/CoverType/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcYWRtaW5cVmlld3NcQ292ZXJUeXBlXERlbGV0ZS5jc2h0bWw=
+[C:/Users/vital/source/repos/BookStore/BookStoreWeb/Areas/admin/Views/CoverType/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcYWRtaW5cVmlld3NcQ292ZXJUeXBlXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/vital/source/repos/BookStore/BookStoreWeb/Areas/admin/Views/CoverType/Index.cshtml]

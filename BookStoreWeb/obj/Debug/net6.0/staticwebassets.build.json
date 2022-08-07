@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "WyYFw5DLLutu3Afj/+43XR727ZvhXA4pXmW1gYQac40=",
+  "Hash": "xVrYHYQXcpjkVr47kxpvkaEy1WMToZhlsKeRfzHKPNo=",
   "Source": "BookStoreWeb",
   "BasePath": "_content/BookStoreWeb",
   "Mode": "Default",
@@ -117,6 +117,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\products\\d8c35e82-4df7-436d-a4e1-757d22e4ac0c.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\vital\\source\\repos\\BookStore\\BookStoreWeb\\wwwroot\\js\\category.js",
+      "SourceId": "BookStoreWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\vital\\source\\repos\\BookStore\\BookStoreWeb\\wwwroot\\",
+      "BasePath": "_content/BookStoreWeb",
+      "RelativePath": "js/category.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\category.js"
+    },
+    {
+      "Identity": "C:\\Users\\vital\\source\\repos\\BookStore\\BookStoreWeb\\wwwroot\\js\\covertype.js",
+      "SourceId": "BookStoreWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\vital\\source\\repos\\BookStore\\BookStoreWeb\\wwwroot\\",
+      "BasePath": "_content/BookStoreWeb",
+      "RelativePath": "js/covertype.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\covertype.js"
     },
     {
       "Identity": "C:\\Users\\vital\\source\\repos\\BookStore\\BookStoreWeb\\wwwroot\\js\\product.js",
