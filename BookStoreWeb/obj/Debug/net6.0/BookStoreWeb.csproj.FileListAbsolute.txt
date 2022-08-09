@@ -533,3 +533,8 @@ C:\Users\vital\source\repos\BookStore\BookStoreWeb\obj\Debug\net6.0\refint\BookS
 C:\Users\vital\source\repos\BookStore\BookStoreWeb\obj\Debug\net6.0\BookStoreWeb.pdb
 C:\Users\vital\source\repos\BookStore\BookStoreWeb\obj\Debug\net6.0\BookStoreWeb.genruntimeconfig.cache
 C:\Users\vital\source\repos\BookStore\BookStoreWeb\obj\Debug\net6.0\ref\BookStoreWeb.dll
+C:\Users\vital\source\repos\BookStore\BookStoreWeb\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\vital\source\repos\BookStore\BookStoreWeb\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\vital\source\repos\BookStore\BookStoreWeb\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\vital\source\repos\BookStore\BookStoreWeb\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\vital\source\repos\BookStore\BookStoreWeb\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll

@@ -81,7 +81,13 @@ namespace BookStoreWeb.Areas.admin.Controllers
                     }
                     obj.Product.ImageUrl = @"\images\products\" + fileName + extension;
                 }
-                
+
+                obj.Product.Description = obj.Product.Description.Replace("<p>", string.Empty)
+                    .Replace("</p>", string.Empty);
+
+                obj.Product.Price50 = obj.Product.Price / 100 * 90;
+                obj.Product.Price100 = obj.Product.Price / 100 * 80;
+
                 if (obj.Product.Id == 0)
                 {
                     _unitOfWork.Products.Add(obj.Product);
@@ -92,9 +98,6 @@ namespace BookStoreWeb.Areas.admin.Controllers
                     _unitOfWork.Products.Update(obj.Product);
                     TempData["success"] = "Product successfully updated";
                 }
-
-                obj.Product.Price50 = obj.Product.Price / 100 * 90;
-                obj.Product.Price100 = obj.Product.Price / 100 * 80;
 
                 _unitOfWork.Save();
                 return RedirectToAction("Index");
