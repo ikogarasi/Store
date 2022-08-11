@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BookStore.DataAccess.Repository
 {
-    public class CompanyRepository : Repository<CompanyModel>//, ICompanyRepository
+    public class CompanyRepository : Repository<CompanyModel>, ICompanyRepository
     {
         private readonly ApplicationDbContext _db;
 
@@ -19,12 +19,12 @@ namespace BookStore.DataAccess.Repository
             _db = db;
         }
 
-        /*public void Update(CompanyModel obj)
+        public void Update(CompanyModel obj)
         {
             var companyFromDb = _db.Companies.FirstOrDefault(i => i.Id == obj.Id);
             if (companyFromDb != null)
             {
-                foreach(PropertyInfo prop in typeof(CompanyModel).GetProperties())
+                foreach (PropertyInfo prop in typeof(CompanyModel).GetProperties())
                 {
                     if (prop.GetValue(obj) != null)
                     {
@@ -32,7 +32,7 @@ namespace BookStore.DataAccess.Repository
                     }
                 }
             }
-            
-        }*/
+
+        }
     }
 }

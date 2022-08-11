@@ -13,7 +13,7 @@ namespace BookStore.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20220809212821_AddIdentityToDb")]
-    partial class AddIdentityToDb
+    partial class addIdentityToDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -9,8 +9,7 @@ using System.Threading.Tasks;
 
 namespace BookStore.Models
 {
-    [NotMapped]
-    public class UserData : IdentityUser
+    public class UserDataModdel : IdentityUser
     {
         [Required]
         public string Name { get; set; }

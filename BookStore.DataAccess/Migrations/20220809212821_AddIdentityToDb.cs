@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BookStore.DataAccess.Migrations
 {
-    public partial class AddIdentityToDb : Migration
+    public partial class addIdentityToDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
