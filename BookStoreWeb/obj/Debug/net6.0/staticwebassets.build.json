@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Fd5YrAnNGtEq2DgdIeRPRa2n8JypLpWGQTejosqUsVM=",
+  "Hash": "WrLD8dzeFbZDl+rU5A6oOHMXmAcGRYDmDg/0cPb0rQc=",
   "Source": "BookStoreWeb",
   "BasePath": "_content/BookStoreWeb",
   "Mode": "Default",
@@ -1273,6 +1273,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\category.js"
+    },
+    {
+      "Identity": "C:\\Users\\vital\\source\\repos\\BookStore\\BookStoreWeb\\wwwroot\\js\\company.js",
+      "SourceId": "BookStoreWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\vital\\source\\repos\\BookStore\\BookStoreWeb\\wwwroot\\",
+      "BasePath": "_content/BookStoreWeb",
+      "RelativePath": "js/company.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\company.js"
     },
     {
       "Identity": "C:\\Users\\vital\\source\\repos\\BookStore\\BookStoreWeb\\wwwroot\\js\\covertype.js",
