@@ -1,8 +1,10 @@
 ﻿using BookStore.DataAccess.Repository.IRepository;
 using BookStore.Models;
 using BookStore.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace BookStoreWeb.Areas.user.Controllers
 {
@@ -26,15 +28,36 @@ namespace BookStoreWeb.Areas.user.Controllers
         }
 
         [HttpGet]
-        public IActionResult Details(int? id)
+        public IActionResult Details(int productId)
         {
             ShoppingCartVM cartObj = new()
             { 
-                Product = _unitOfWork.Products.GetFirstOrDefault(i => i.Id == id, includeProperties: "CategoryModel,CoverTypeModel"),
+                Product = _unitOfWork.Products.GetFirstOrDefault(i => i.Id == productId, includeProperties: "CategoryModel,CoverTypeModel"),
                 Quantity = 1,
+                ProductId = productId
             };
 
             return View(cartObj);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public IActionResult Details(ShoppingCartVM obj)
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            obj.UserId = claim.Value;
+
+            ShoppingCartVM cartFromDb = _unitOfWork.ShoppingCarts
+                .GetFirstOrDefault(i => i.UserId == claim.Value && i.Id == obj.ProductId);
+
+            if (cartFromDb == null)
+                _unitOfWork.ShoppingCarts.Add(obj);
+            else
+                _unitOfWork.ShoppingCarts.IncrementQuantity(cartFromDb, obj.Quantity);
+
+            _unitOfWork.Save();
+            return RedirectToAction("Index");
         }
 
         public IActionResult Privacy()

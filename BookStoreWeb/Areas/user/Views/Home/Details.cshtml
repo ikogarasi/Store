@@ -1,56 +1,60 @@
 ﻿@model BookStore.Models.ViewModels.ShoppingCartVM
 
-<div class="row">
-    <div class="col-4 p-5">
-        <img src="@Model.Product.ImageUrl" style="width:100%"/>
-    </div>
-    <div class="col p-5">
-        <h1>@Model.Product.Title</h1>
-        <p class="text-secondary">by @Model.Product.Author</p>
-        <div style="height:30px">
-            <div class="m-1" style="height:100%;display:inline-block;background-color:goldenrod; width:100px; border-radius:3px; border-color:darkgoldenrod">
-                <p style="color:white; text-align:center;">@Model.Product.CategoryModel.Name</p>
+<form method="post">
+    <input hidden asp-for="ProductId" />
+    <div class="row">
+        <div class="col-4 p-5">
+            <img src="@Model.Product.ImageUrl" style="width:100%"/>
+        </div>
+        <div class="col p-5">
+            <h1>@Model.Product.Title</h1>
+            <p class="text-secondary">by @Model.Product.Author</p>
+            <div style="height:30px">
+                <div class="m-1" style="height:100%;display:inline-block;background-color:goldenrod; width:100px; border-radius:3px; border-color:darkgoldenrod">
+                    <p style="color:white; text-align:center;">@Model.Product.CategoryModel.Name</p>
+                </div>
+                <div class="m-1" style="height:100%;display:inline-block;background-color:dodgerblue; width:100px; border-radius:3px;border-color:royalblue">
+                    <p style="color:white; text-align:center">@Model.Product.CoverTypeModel.Name</p>
+                </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Quantity</th>
+                        <td>1 - 50</td>
+                        <td>51 - 100</td>
+                        <td>100+</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Price</th>
+                        <td>@Model.Product.Price</td>
+                        <td>@Model.Product.Price50</td>
+                        <td>@Model.Product.Price100</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="pb-3">
+                <p class="d-inline m-1">Count: </p>
+                <input type="number" asp-for="Quantity" class="form-control d-inline w-25" />
             </div>
-            <div class="m-1" style="height:100%;display:inline-block;background-color:dodgerblue; width:100px; border-radius:3px;border-color:royalblue">
-                <p style="color:white; text-align:center">@Model.Product.CoverTypeModel.Name</p>
+            <div class="btn-group">
+                <button type="submit" class="btn btn-primary mx-2" asp-action="Details">
+                    <i class="bi bi-cart-plus"></i> Add to Cart
+                </button>
+                <a class="btn btn-secondary mx-2" asp-action="AddToWishlist" asp-route-id="@Model.Product.Id">
+                    <i class="bi bi-bookmark-heart"></i> Add to wishlist
+                </a>
             </div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Quantity</th>
-                    <td>1 - 50</td>
-                    <td>51 - 100</td>
-                    <td>100+</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th>Price</th>
-                    <td>@Model.Product.Price</td>
-                    <td>@Model.Product.Price50</td>
-                    <td>@Model.Product.Price100</td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="pb-3">
-            <p class="d-inline m-1">Count: </p>
-            <input type="number" asp-for="Quantity" class="form-control d-inline w-25" />
+            <div class="pt-5">
+                <h1>Description</h1>
+                    @Model.Product.Description
+            </div>
+            @*<div class="pt-5">
+                <h1>Product Details</h1>
+                <p class="text"></p>
+            </div>*@
         </div>
-        <div class="btn-group">
-            <a class="btn btn-primary mx-2" asp-action="AddToCart" asp-route-id="@Model.Product.Id">
-                <i class="bi bi-cart-plus"></i> Add to Cart
-            </a>
-            <a class="btn btn-secondary mx-2" asp-action="AddToWishlist" asp-route-id="@Model.Product.Id">
-                <i class="bi bi-bookmark-heart"></i> Add to wishlist
-            </a>
         </div>
-        <div class="pt-5">
-            <h1>Description</h1>
-                @Model.Product.Description
-        </div>
-        @*<div class="pt-5">
-            <h1>Product Details</h1>
-            <p class="text"></p>
-        </div>*@
     </div>
-</div>
+</form>

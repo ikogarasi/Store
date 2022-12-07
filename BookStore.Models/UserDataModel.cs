@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BookStore.Models
 {
-    public class UserDataModdel : IdentityUser
+    public class UserDataModel : IdentityUser
     {
         [Required]
         public string Name { get; set; }
@@ -17,5 +18,10 @@ namespace BookStore.Models
         public string? City { get; set; }
         [DataType(DataType.PostalCode)]
         public string? PostalCode { get; set; }
+
+        public int? CompanyId { get; set; }
+        [ForeignKey("CompanyId")]
+        [ValidateNever]
+        public CompanyModel Company { get; set; }
     }
 }

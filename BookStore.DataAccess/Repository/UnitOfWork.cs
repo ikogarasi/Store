@@ -19,13 +19,16 @@ namespace BookStore.DataAccess.Repository
             CoverTypes = new CoverTypeRepository(_db);
             Products = new ProductRepository(_db);
             Companies = new CompanyRepository(_db);
+            UsersData = new UserDataRepository(_db);
+            ShoppingCarts = new ShoppingCartRepository(_db);
         }
 
         public ICategoryRepository Categories { get; private set; }
         public ICoverTypeRepository CoverTypes { get; private set; }
         public IProductRepository Products { get; private set; }
         public ICompanyRepository Companies { get; private set; }
-        
+        public IUserDataRepository UsersData { get; private set; }
+        public IShoppingCartRepository ShoppingCarts { get; private set; }
         public void Save()
         {
             _db.SaveChanges();

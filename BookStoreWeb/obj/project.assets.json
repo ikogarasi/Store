@@ -3740,6 +3740,19 @@
         "runtime": {
           "bin/placeholder/BookStore.Models.dll": {}
         }
+      },
+      "BookStore.Utility/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Microsoft.AspNetCore.Identity.UI": "6.0.7"
+        },
+        "compile": {
+          "bin/placeholder/BookStore.Utility.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BookStore.Utility.dll": {}
+        }
       }
     }
   },
@@ -11060,11 +11073,17 @@
       "type": "project",
       "path": "../BookStore.Models/BookStore.Models.csproj",
       "msbuildProject": "../BookStore.Models/BookStore.Models.csproj"
+    },
+    "BookStore.Utility/1.0.0": {
+      "type": "project",
+      "path": "../BookStore.Utility/BookStore.Utility.csproj",
+      "msbuildProject": "../BookStore.Utility/BookStore.Utility.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
       "BookStore.DataAccess >= 1.0.0",
+      "BookStore.Utility >= 1.0.0",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 6.0.7",
       "Microsoft.AspNetCore.Identity.UI >= 6.0.7",
       "Microsoft.EntityFrameworkCore >= 6.0.7",
@@ -11102,6 +11121,9 @@
           "projectReferences": {
             "C:\\Users\\vital\\source\\repos\\BookStore\\BookStore.DataAccess\\BookStore.DataAccess.csproj": {
               "projectPath": "C:\\Users\\vital\\source\\repos\\BookStore\\BookStore.DataAccess\\BookStore.DataAccess.csproj"
+            },
+            "C:\\Users\\vital\\source\\repos\\BookStore\\BookStore.Utility\\BookStore.Utility.csproj": {
+              "projectPath": "C:\\Users\\vital\\source\\repos\\BookStore\\BookStore.Utility\\BookStore.Utility.csproj"
             }
           }
         }
