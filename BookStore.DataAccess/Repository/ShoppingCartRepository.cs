@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace BookStore.DataAccess.Repository
 {
-    public class ShoppingCartRepository : Repository<ShoppingCartVM>, IShoppingCartRepository
+    public class ShoppingCartRepository : Repository<ShoppingCart>, IShoppingCartRepository
     {
         private readonly ApplicationDbContext _db;
 
@@ -20,16 +20,16 @@ namespace BookStore.DataAccess.Repository
             _db = db;
         }
 
-        public int DecrementQuantity(ShoppingCartVM shoppingCartVM, int count)
+        public int DecrementQuantity(ShoppingCart shoppingCart, int count)
         {
-            shoppingCartVM.Quantity -= count;
-            return shoppingCartVM.Quantity;
+            shoppingCart.Quantity -= count;
+            return shoppingCart.Quantity;
         }
 
-        public int IncrementQuantity(ShoppingCartVM shoppingCartVM, int count)
+        public int IncrementQuantity(ShoppingCart shoppingCart, int count)
         {
-            shoppingCartVM.Quantity += count;
-            return shoppingCartVM.Quantity;
+            shoppingCart.Quantity += count;
+            return shoppingCart.Quantity;
         }
     }
 }

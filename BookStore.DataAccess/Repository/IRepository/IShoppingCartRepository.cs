@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace BookStore.DataAccess.Repository.IRepository
 {
-    public interface IShoppingCartRepository : IRepository<ShoppingCartVM>
+    public interface IShoppingCartRepository : IRepository<ShoppingCart>
     {
-        int IncrementQuantity(ShoppingCartVM shoppingCartVM, int count);
-        int DecrementQuantity(ShoppingCartVM shoppingCartVM, int count);
+        int IncrementQuantity(ShoppingCart shoppingCart, int count);
+        int DecrementQuantity(ShoppingCart shoppingCart, int count);
     }
 }

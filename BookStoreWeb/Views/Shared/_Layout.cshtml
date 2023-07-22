@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using BookStore.Utility
+@inject IHttpContextAccessor HttpContextAccessor
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -27,17 +29,28 @@
                     <span class="visually-hidden">(current)</span>
                   </a>
                 </li>
+                @if (User.IsInRole(SD.Role_Admin))
+                {            
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Content Management</a>
+                      <div class="dropdown-menu" bis_skin_checked="1">
+                        <a asp-area="admin" asp-controller="Category" asp-action="Index" class="dropdown-item">Categories</a>
+                        <a asp-area="admin" asp-controller="CoverType" asp-action="Index" class="dropdown-item">Cover types</a>
+                        <a asp-area="admin" asp-controller="Product" asp-action="Index" class="dropdown-item">Products</a>
+                        <a asp-area="admin" asp-controller="Company" asp-action="Index" class="dropdown-item">Companies</a>
+                        @*<div class="dropdown-divider" bis_skin_checked="1"></div>*@
+                      </div>
+                    </li>
+                }
                 <li class="nav-item">
+                    <a class="nav-link" asp-area="admin" asp-controller="Order" asp-action="index">
+                        Order Management
+                    </a>
                 </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Manage (admin)</a>
-                  <div class="dropdown-menu" bis_skin_checked="1">
-                    <a asp-area="admin" asp-controller="Category" asp-action="Index" class="dropdown-item">Categories</a>
-                    <a asp-area="admin" asp-controller="CoverType" asp-action="Index" class="dropdown-item">Cover types</a>
-                    <a asp-area="admin" asp-controller="Product" asp-action="Index" class="dropdown-item">Products</a>
-                    <a asp-area="admin" asp-controller="Company" asp-action="Index" class="dropdown-item">Companies</a>
-                    @*<div class="dropdown-divider" bis_skin_checked="1"></div>*@
-                  </div>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="user" asp-controller="Cart" asp-action="index">
+                        @await Component.InvokeAsync("ShoppingCart")
+                    </a>
                 </li>
               </ul>
               <partial name="_LoginPartial" />
