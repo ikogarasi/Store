@@ -11,7 +11,6 @@ namespace BookStore.DataAccess.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-            Database.EnsureCreated();
         }
 
         public DbSet<CategoryModel> Categories { get; set; }
@@ -20,6 +19,7 @@ namespace BookStore.DataAccess.Data
         public DbSet<UserDataModel> UsersData { get; set; }
         public DbSet<CompanyModel> Companies { get; set; }  
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+        public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<OrderHeader> OrderHeaders { get; set; }
         public DbSet<OrderDetails> OrderDetails { get; set; }
     }

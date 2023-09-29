@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using BookStore.Utility;
 using Stripe;
+using Org.BouncyCastle.Asn1.BC;
+using BookStore.DataAccess.DbInitializer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +26,7 @@ builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Str
 builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddDefaultTokenProviders()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 builder.Services.AddSingleton<IEmailSender, EmailSender>();
 
 builder.Services.AddAuthentication().AddFacebook(options =>
@@ -68,6 +71,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 StripeConfiguration.ApiKey = builder.Configuration.GetValue<string>("Stripe:SecretKey");
+SeedDatabase();
 
 app.UseAuthentication();;
 app.UseAuthorization();
@@ -80,3 +84,12 @@ app.MapControllerRoute(
     pattern: "{area=user}/{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+void SeedDatabase()
+{
+    using var scope = app.Services.CreateScope();
+
+    var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
+
+    dbInitializer.Initialize();
+}

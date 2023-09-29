@@ -1,10 +1,18 @@
 ﻿@page
+@using BookStore.Utility;
 @model RegisterModel
 @{
     ViewData["Title"] = "Register";
 }
 
-<h1 class="pt-4">@ViewData["Title"]</h1>
+@if (User.IsInRole(SD.Role_Admin))
+{
+    <h1 class="pt-4">Register - ADMIN PORTAL</h1>
+}
+else
+{
+    <h1 class="pt-4">@ViewData["Title"]</h1>
+}
 
 <div class="row">
     <div class="col-md-7">
@@ -46,16 +54,19 @@
                 <label asp-for="Input.ConfirmPassword"></label>
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
-            <div class="form-floating py-2 col-6">
-                <select asp-for="Input.Role" asp-items="@Model.Input.RoleList" class="form-select" aria-required="true">
-                    <option disabled selected>-Select Role-</option>
-                </select>
-            </div>
-            <div class="form-floating py-2 col-6">
-                <select asp-for="Input.CompanyId" style="display:none" asp-items="@Model.Input.CompanyList" class="form-select" aria-required="true">
-                    <option disabled selected>-Select Company-</option>
-                </select>
-            </div>
+            @if (User.IsInRole(SD.Role_Admin))
+            {
+                <div class="form-floating py-2 col-6">
+                    <select asp-for="Input.Role" asp-items="@Model.Input.RoleList" class="form-select" aria-required="true">
+                        <option disabled selected>-Select Role-</option>
+                    </select>
+                </div>
+                <div class="form-floating py-2 col-6">
+                    <select asp-for="Input.CompanyId" style="display:none" asp-items="@Model.Input.CompanyList" class="form-select" aria-required="true">
+                        <option disabled selected>-Select Company-</option>
+                    </select>
+                </div>
+            }
             <button id="registerSubmit" type="submit" class="w-100 btn btn-primary">Register</button>
         </form>
     </div>

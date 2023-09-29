@@ -23,6 +23,7 @@ namespace BookStore.DataAccess.Repository
             ShoppingCarts = new ShoppingCartRepository(_db);
             OrderDetails = new OrderDetailRepository(_db);
             OrderHeader = new OrderHeaderRepository(_db);
+            ProductImages = new ProductImageRepository(_db);
         }
 
         public ICategoryRepository Categories { get; }
@@ -33,6 +34,7 @@ namespace BookStore.DataAccess.Repository
         public IShoppingCartRepository ShoppingCarts { get; }
         public IOrderDetailRepository OrderDetails { get; }
         public IOrderHeaderRepository OrderHeader { get; }
+        public IProductImageRepository ProductImages { get; }
 
         public void Save()
         {

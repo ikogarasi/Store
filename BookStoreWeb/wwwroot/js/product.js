@@ -7,7 +7,10 @@ $(document).ready(function () {
 function loadDataTable() {
     dataTable = $('#tblData').DataTable({
         "ajax": {
-            "url": "/Admin/Product/GetAll"
+            "type": "GET",
+            "url": "/Admin/Product/GetAll",
+            "Content-Type": 'application/json',
+            "cache": false
         },
         "columns": [
             { "data": "title", "width": "15%"},

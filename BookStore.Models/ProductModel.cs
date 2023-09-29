@@ -37,9 +37,6 @@ namespace BookStore.Models
         [ValidateNever]
         public double Price100 { get; set; }
 
-        [ValidateNever]
-        public string ImageUrl { get; set; }
-
         [Required]
         public int CategoryModelId { get; set; }
         [ForeignKey("CategoryModelId")]
@@ -52,5 +49,7 @@ namespace BookStore.Models
         [ValidateNever]
         public CoverTypeModel CoverTypeModel { get; set; }
 
+        [ValidateNever]
+        public List<ProductImage> ProductImages { get; set; }
     }
 }

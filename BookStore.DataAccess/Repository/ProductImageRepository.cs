@@ -4,24 +4,24 @@ using BookStore.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BookStore.DataAccess.Repository
 {
-    public class UserDataRepository : Repository<UserDataModel>, IUserDataRepository
+    public class ProductImageRepository : Repository<ProductImage>, IProductImageRepository
     {
-        private readonly ApplicationDbContext _db;
+        private ApplicationDbContext _db;
 
-        public UserDataRepository(ApplicationDbContext db) : base(db)
+        public ProductImageRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
         }
 
-        public void Update(UserDataModel user)
+        public void Update(ProductImage obj)
         {
-            _db.UsersData.Update(user);
+            _db.Update(obj);
         }
     }
 }

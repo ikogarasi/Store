@@ -201,6 +201,8 @@ namespace BookStoreWeb.Areas.user.Controllers
             _unitOfWork.ShoppingCarts.RemoveRange(shoppingCarts);
             _unitOfWork.Save();
 
+            HttpContext.Session.Clear();
+
             return View(id);
         }
 
@@ -230,6 +232,7 @@ namespace BookStoreWeb.Areas.user.Controllers
             else
             {
                 _unitOfWork.ShoppingCarts.DecrementQuantity(cart, 1);
+                HttpContext.Session.Clear();
             }
 
             _unitOfWork.Save();

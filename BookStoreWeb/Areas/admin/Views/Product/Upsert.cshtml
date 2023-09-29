@@ -2,7 +2,6 @@
 
 <form method="post" enctype="multipart/form-data">
     <input asp-for="Product.Id" hidden />
-    <input asp-for="Product.ImageUrl" hidden />
 
     <div class="row">
         <div class="col-10">
@@ -20,7 +19,7 @@
                     <textarea asp-for="Product.Description" rows="3" class="form-control"></textarea>
                 </div>
                 <div class="mb-3">
-                    <input type="file" asp-for="Product.ImageUrl" name="file" id="uploadBox" class="form-control"/>
+                    <input type="file" asp-for="Product.ProductImages" name="files" id="uploadBox" class="form-control" multiple/>
                 </div>
                 <div class="mb-3 col-6">
                     <span asp-validation-for="Product.ISBN" class="text-danger"></span>
@@ -65,10 +64,16 @@
                 </div>
             </div>
         </div>
-        <div class="col-2 pt-4">
-            <img src="@Model.Product.ImageUrl"
-            style="width:100%; border-radius:5px; border:1px solid #78c2ad" />
-        </div>
+        @if (Model.Product.ProductImages != null)
+        {
+            foreach (var image in Model.Product.ProductImages)
+            {
+                <div class="col-2 pt-4">
+                    <img src="@image.ImageUrl"
+                         style="width:100%; border-radius:5px; border:1px solid #78c2ad" />
+                </div>
+            }    
+        }
     </div> 
 </form>
 

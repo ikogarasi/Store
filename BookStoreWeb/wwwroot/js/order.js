@@ -29,7 +29,7 @@ function loadDataTable(orderStatus) {
             "data": {
                 "status" : orderStatus
             },
-            "cache": true
+            "cache": false
         },
         "columns": [
             { "data": "id", "width": "5%"},

@@ -5,6 +5,7 @@ using BookStore.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using NuGet.Packaging.Signing;
 
 namespace BookStoreWeb.Areas.admin.Controllers
 {
@@ -58,31 +59,58 @@ namespace BookStoreWeb.Areas.admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Upsert(ProductVM obj, IFormFile? file)
+        public IActionResult Upsert(ProductVM obj, List<IFormFile>? files)
         {
             if (ModelState.IsValid)
             {
-                string wwwRootPath = _hostEnvironment.WebRootPath;
-                if (file != null)
+                if (obj.Product.Id == 0)
                 {
-                    string fileName = Guid.NewGuid().ToString();
-                    var upload = Path.Combine(wwwRootPath, @"images\products");
-                    var extension = Path.GetExtension(file.FileName);
+                    _unitOfWork.Products.Add(obj.Product);
+                }
+                else
+                {
+                    _unitOfWork.Products.Update(obj.Product);
+                }
 
-                    if (obj.Product.ImageUrl != null)
+                _unitOfWork.Save();
+
+                string wwwRootPath = _hostEnvironment.WebRootPath;
+                
+                if (files != null)
+                {
+                    foreach (IFormFile file in files)
                     {
-                        var oldImagePath = Path.Combine(wwwRootPath, obj.Product.ImageUrl.TrimStart('\\'));
-                        if (System.IO.File.Exists(oldImagePath))
+                        var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                        var productPath = @"images\product\product-" + obj.Product.Id;
+                        var finalPath = Path.Combine(wwwRootPath, fileName);
+                        
+                        if (!Directory.Exists(finalPath))
                         {
-                            System.IO.File.Delete(oldImagePath);
+                            Directory.CreateDirectory(finalPath);
                         }
+
+                        using (var fs = new FileStream(Path.Combine(finalPath, fileName), FileMode.Create))
+                        {
+                            file.CopyTo(fs);
+                        }
+
+                        ProductImage productImage = new()
+                        {
+                            ImageUrl = @$"\{productPath}\{fileName}",
+                            ProductId = obj.Product.Id
+                        };
+
+                        if (obj.Product.ProductImages == null)
+                        {
+                            obj.Product.ProductImages = new List<ProductImage>();
+                        }
+
+                        obj.Product.ProductImages.Add(productImage);
                     }
 
-                    using (var fs = new FileStream(Path.Combine(upload, fileName + extension), FileMode.Create))
-                    {
-                        file.CopyTo(fs);
-                    }
-                    obj.Product.ImageUrl = @"\images\products\" + fileName + extension;
+                    _unitOfWork.Products.Update(obj.Product);
+                    _unitOfWork.Save();
+                    TempData["success"] = "Product successfully updated";
                 }
 
                 obj.Product.Description = obj.Product.Description.Replace("<p>", string.Empty)
@@ -90,17 +118,6 @@ namespace BookStoreWeb.Areas.admin.Controllers
 
                 obj.Product.Price50 = obj.Product.Price / 100 * 90;
                 obj.Product.Price100 = obj.Product.Price / 100 * 80;
-
-                if (obj.Product.Id == 0)
-                {
-                    _unitOfWork.Products.Add(obj.Product);
-                    TempData["success"] = "Product successfully created";
-                }
-                else
-                {
-                    _unitOfWork.Products.Update(obj.Product);
-                    TempData["success"] = "Product successfully updated";
-                }
 
                 _unitOfWork.Save();
                 return RedirectToAction("Index");
@@ -111,9 +128,9 @@ namespace BookStoreWeb.Areas.admin.Controllers
         
         #region API CALLS
         [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult GetAll(string? _ = null)
         {
-            var productList = _unitOfWork.Products.GetAll(includeProperties:"CategoryModel,CoverTypeModel");
+            var productList = _unitOfWork.Products.GetAll(includeProperties:"CategoryModel,CoverTypeModel,ProductImages");
             return Json(new {data = productList});
         }
 
@@ -126,11 +143,11 @@ namespace BookStoreWeb.Areas.admin.Controllers
                 return Json(new { success = false, message = "Error while deleting" });
             }
 
-            var oldImagePath = Path.Combine(_hostEnvironment.WebRootPath, obj.ImageUrl.TrimStart('\\'));
-            if (System.IO.File.Exists(oldImagePath))
-            {
-                System.IO.File.Delete(oldImagePath);
-            }
+            //var oldImagePath = Path.Combine(_hostEnvironment.WebRootPath, obj.ImageUrl.TrimStart('\\'));
+            //if (System.IO.File.Exists(oldImagePath))
+            //{
+            //    System.IO.File.Delete(oldImagePath);
+            //}
 
             _unitOfWork.Products.Remove(obj);
             _unitOfWork.Save();
